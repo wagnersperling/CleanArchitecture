@@ -19,3 +19,5 @@ namespace CleanArchMvc.Infra.Data.Context
         }
     }
 }
+//add-migration Inicial
+//update-database
