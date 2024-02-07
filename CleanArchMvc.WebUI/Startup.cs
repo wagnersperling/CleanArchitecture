@@ -51,8 +51,8 @@ namespace CleanArchMvc.WebUI
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(
-                    name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
+                    name: "default",                    
+                    pattern: "{controller=Categories}/{action=Index}/{id?}");
             });
         }
     }
