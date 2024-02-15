@@ -1,10 +1,12 @@
 ﻿using CleanArchMvc.Application.DTOs;
 using CleanArchMvc.Application.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 
 namespace CleanArchMvc.WebUI.Controllers
 {
+    [Authorize]
     public class CategoriesController : Controller
     {
         private readonly ICategoryService _categoryService;
@@ -45,7 +47,7 @@ namespace CleanArchMvc.WebUI.Controllers
 
             var categoryDto = await _categoryService.GetById(id.Value);
 
-            if(categoryDto == null) return NotFound();
+            if (categoryDto == null) return NotFound();
 
             return View(categoryDto);
         }
@@ -62,12 +64,13 @@ namespace CleanArchMvc.WebUI.Controllers
                 catch (System.Exception)
                 {
                     throw;
-                }               
+                }
                 return RedirectToAction(nameof(Index));
             }
             return View(categoryDto);
         }
 
+        [Authorize(Roles = "Admin")]
         [HttpGet]
         public async Task<IActionResult> Delete(int? id)
         {
